@@ -25,6 +25,16 @@
   <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
+  <style>
+    body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background-color: #f0f0f900;
+        opacity: 1;
+        background-image: radial-gradient(#99a9e3 0.8px, transparent 0.8px), radial-gradient(#99a9e3 0.8px, #f0f0f900 0.8px);
+        background-size: 32px 32px;
+        background-position: 0 0, 16px 16px;
+    }
+</style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="col d-flex align-items-center justify-content-center vh-100">
