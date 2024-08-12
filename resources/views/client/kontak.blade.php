@@ -12,7 +12,7 @@
                     <div class="card-body">
                         <!-- Kontak Informasi -->
                         <div class="contact-info mb-4">
-                            <h5 class="font-weight-bold">{{ __('Kontak Informasi') }}</h5>
+                            <h5 class="font-weight-bold">{{ __('Informasi Kontak') }}</h5>
                             <p><i class="fas fa-envelope"></i> Email: <a href="mailto:sekretariat.sdgs@bappeda.go.id">
                                     sekretariat.sdgs@bappeda.go.id</a></p>
                             <p><i class="fas fa-phone"></i> Telepon: <a href="tel:+628123456789"> +62 812-3456-789</a></p>
