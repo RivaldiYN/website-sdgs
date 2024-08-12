@@ -10,6 +10,16 @@
                     <div class="card-header bg-success">{{ __('Kirim Pesan') }}</div>
                     <img class="w-100" src="{{ asset('assets/img/slider.png') }}" alt="">
                     <div class="card-body">
+                        <!-- Kontak Informasi -->
+                        <div class="contact-info mb-4">
+                            <h5 class="font-weight-bold">{{ __('Kontak Informasi') }}</h5>
+                            <p><i class="fas fa-envelope"></i> Email: <a href="mailto:sekretariat.sdgs@bappeda.go.id">
+                                    sekretariat.sdgs@bappeda.go.id</a></p>
+                            <p><i class="fas fa-phone"></i> Telepon: <a href="tel:+628123456789"> +62 812-3456-789</a></p>
+                        </div>
+
+                        <h5 class="mt-5 mb-3 font-weight-bold">{{ __('Kirim Pesan Langsung') }}</h5>
+
                         <form method="POST" action="mailto:sekretariat.sdgs@bappeda.go.id">
                             @csrf
 

@@ -347,11 +347,13 @@
                 <a href="/berita" class="text-primary">Lihat berita lainnya</a>
             </div>
             <div class="row">
-                @foreach($beritas as $berita)
+                @foreach ($beritas as $berita)
                     <a href="/berita/{{ $berita->slug_berita }}" class="col-md-4">
                         <div class="card mb-4" style="border-radius: 12px;">
-                            <div class="card-img-top-container" style="position: relative; width: 100%; padding-bottom: 75%;">
-                                <img src="{{ asset('assets/img/' . $berita->gambar_berita) }}" class="card-img-top p-2" alt="{{ $berita->judul_berita }}"
+                            <div class="card-img-top-container"
+                                style="position: relative; width: 100%; padding-bottom: 75%;">
+                                <img src="{{ asset('assets/img/' . $berita->gambar_berita) }}" class="card-img-top p-2"
+                                    alt="{{ $berita->judul_berita }}"
                                     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
                             </div>
                             <div class="card-body">
@@ -361,7 +363,8 @@
                                     {!! Str::limit($berita->konten_berita, 50) !!}
                                 </p>
                                 <p class="card-text">
-                                    <small class="text-muted">Diposting pada {{ $berita->created_at->format('H:i') }} WIB - {{ $berita->created_at->format('d/m/Y') }} oleh Admin</small>
+                                    <small class="text-muted">Diposting pada {{ $berita->created_at->format('H:i') }} WIB -
+                                        {{ $berita->created_at->format('d/m/Y') }} oleh Admin</small>
                                 </p>
                             </div>
                         </div>
@@ -369,7 +372,7 @@
                 @endforeach
             </div>
         </div>
-        
+
         <div class="container mb-5 scroll-animation">
             <div class="video-container shadow-md">
                 <h2 class="font-weight-bold mx-auto">Dashboard SDGs Kota Bandar Lampung</h2>
