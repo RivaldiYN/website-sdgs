@@ -357,9 +357,13 @@
             </div>
             <div class="row">
                 @if ($beritas->isEmpty())
-                    <div class="col-12 text-center">
-                        <p>Belum ada berita yang ditampilkan.</p>
+                <div class="col-12 text-center">
+                    <div class="alert alert-info" role="alert" style="border-radius: 12px; background-color: #e3f2fd; color: #0d47a1; padding: 20px;">
+                        <i class="fas fa-exclamation-circle fa-3x mb-3" style="color: #0d47a1;"></i>
+                        <h4 class="alert-heading font-weight-bold">Belum Ada Berita!</h4>
+                        <p>Sepertinya belum ada berita yang ditampilkan saat ini. Silakan periksa lagi nanti atau <a href="/kontak" class="text-primary">hubungi kami</a> jika ada pertanyaan.</p>
                     </div>
+                </div>                
                 @else
                     @foreach ($beritas as $index => $berita)
                         @php
