@@ -36,23 +36,32 @@
     </svg>
 
     <div class="container pt-5">
-        <div class="bg-primary my-5" style=" border-radius: 12px;">
+        <div class="bg-primary my-5" style="border-radius: 12px;">
             <h1 class="text-center py-5 font-weight-bold text-xl">Berita SDGs Kota Bandar Lampung</h1>
         </div>
         <div class="d-flex flex-wrap">
             @foreach ($beritas as $berita)
+                @php
+                    $gambar_berita = json_decode($berita->gambar_berita, true);
+                    $first_image = $gambar_berita[0] ?? null;
+                @endphp
                 <a href="{{ route('berita.show', $berita->slug_berita) }}" class="col-md-4">
                     <div class="card mb-4" style="border-radius: 12px;">
                         <div class="card-img-top-container" style="position: relative; width: 100%; padding-bottom: 75%;">
-                            <img src="{{ asset('assets/img/' . $berita->gambar_berita) }}" class="card-img-top p-2" alt="{{ $berita->judul_berita }}"
-                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                            @if ($first_image)
+                                <img src="{{ asset('assets/img/' . $first_image) }}" class="card-img-top p-2" alt="{{ $berita->judul_berita }}"
+                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                            @else
+                                <img src="{{ asset('assets/img/default-image.png') }}" class="card-img-top p-2" alt="Default Image"
+                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                            @endif
                         </div>
                         <div class="card-body">
                             <h5 class="card-title font-weight-bold">{!! Str::limit($berita->judul_berita, 50) !!}</h5>
-                                <p class="card-text text-truncate"
-                                    style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">
-                                    {!! Str::limit($berita->konten_berita, 50) !!}
-                                </p>
+                            <p class="card-text text-truncate"
+                                style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">
+                                {!! Str::limit($berita->konten_berita, 50) !!}
+                            </p>
                             <p class="card-text">
                                 <small class="text-muted">Diposting pada {{ $berita->created_at->format('H:i') }} WIB - {{ $berita->created_at->format('d/m/Y') }} oleh Admin</small>
                             </p>
@@ -62,6 +71,7 @@
             @endforeach
         </div>
     </div>
+    
 
     <svg class="svg-bawah" width="476" height="476" viewBox="0 0 476 476" fill="none"
         xmlns="http://www.w3.org/2000/svg">

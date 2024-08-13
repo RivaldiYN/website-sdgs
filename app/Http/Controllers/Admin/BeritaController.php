@@ -41,7 +41,7 @@ class BeritaController extends Controller
         $request->validate([
             'judul_berita' => 'required',
             'konten_berita' => 'required',
-            'gambar_berita' => 'nullable|image|mimes:jpg,bmp,png,svg,jpeg|max:2048', // validate image
+            'gambar_berita.*' => 'nullable|image|mimes:jpg,bmp,png,svg,jpeg|max:2048', // validate each image
         ],[
             'judul_berita.required' => 'Judul Berita Tidak Boleh Kosong.',
             'konten_berita.required' => 'Konten Berita Tidak Boleh Kosong.',
@@ -49,21 +49,22 @@ class BeritaController extends Controller
 
         $fix_konten = strip_tags($request->konten_berita);
 
-        // handle file upload
-        $gambar_name = null;
+        // handle multiple file uploads
+        $gambar_names = [];
         if ($request->hasFile('gambar_berita')) {
-            $gambar = $request->file('gambar_berita');
-            $gambar_name = time() . '.' . $gambar->getClientOriginalExtension();
-            $gambar->move(public_path('assets/img'), $gambar_name);
+            foreach($request->file('gambar_berita') as $gambar) {
+                $gambar_name = time() . '_' . $gambar->getClientOriginalName();
+                $gambar->move(public_path('assets/img'), $gambar_name);
+                $gambar_names[] = $gambar_name;
+            }
         }
 
         $slug = SlugService::createSlug(Berita::class, 'slug_berita', $request->judul_berita);
 
         Berita::create([
-            'judul_berita' => $request -> judul_berita,
-            'id_tag' => $request -> id_tag_berita,
+            'judul_berita' => $request->judul_berita,
             'konten_berita' => $fix_konten,
-            'gambar_berita' => $gambar_name,
+            'gambar_berita' => json_encode($gambar_names), // store as JSON array
             'waktu_berita' => $waktu,
             'slug_berita' => $slug,
         ]);
@@ -100,7 +101,7 @@ class BeritaController extends Controller
         $request->validate([
             'judul_berita' => 'required',
             'konten_berita' => 'required',
-            'gambar_berita' => 'nullable|image|mimes:jpg,bmp,png,svg,jpeg|max:2048', // validate image
+            'gambar_berita.*' => 'nullable|image|mimes:jpg,bmp,png,svg,jpeg|max:2048', // validate each image
         ],[
             'judul_berita.required' => 'Judul Berita Tidak Boleh Kosong.',
             'konten_berita.required' => 'Konten Berita Tidak Boleh Kosong.',
@@ -110,22 +111,24 @@ class BeritaController extends Controller
 
         $fix_konten = strip_tags($request->konten_berita);
 
-        // handle file upload
+        // handle multiple file uploads
+        $gambar_names = [];
         if ($request->hasFile('gambar_berita')) {
-            $gambar = $request->file('gambar_berita');
-            $gambar_name = time() . '.' . $gambar->getClientOriginalExtension();
-            $gambar->move(public_path('assets/img'), $gambar_name);
+            foreach($request->file('gambar_berita') as $gambar) {
+                $gambar_name = time() . '_' . $gambar->getClientOriginalName();
+                $gambar->move(public_path('assets/img'), $gambar_name);
+                $gambar_names[] = $gambar_name;
+            }
         } else {
-            $gambar_name = $berita->gambar_berita; // keep the existing image if no new file is uploaded
+            $gambar_names = json_decode($berita->gambar_berita); // keep existing images if no new files are uploaded
         }
 
         $slug = SlugService::createSlug(Berita::class, 'slug_berita', $request->judul_berita);
 
         $berita->update([
-            'judul_berita' => $request -> judul_berita,
-            'id_tag' => $request -> id_tag_berita,
+            'judul_berita' => $request->judul_berita,
             'konten_berita' => $fix_konten,
-            'gambar_berita' => $gambar_name,
+            'gambar_berita' => json_encode($gambar_names), // store as JSON array
             'waktu_berita' => $waktu,
             'slug_berita' => $slug,
         ]);

@@ -361,15 +361,21 @@
                         <p>Belum ada berita yang ditampilkan.</p>
                     </div>
                 @else
-                    @foreach ($beritas as $berita)
+                    @foreach ($beritas as $index => $berita)
+                        @php
+                            $gambar_berita = json_decode($berita->gambar_berita, true);
+                            $first_image = $gambar_berita[0] ?? null;
+                        @endphp
                         <a href="/berita/{{ $berita->slug_berita }}" class="col-md-4 card-berita">
                             <div class="card mb-4" style="border-radius: 12px;">
-                                <div class="card-img-top-container"
-                                    style="position: relative; width: 100%; padding-bottom: 75%;">
-                                    <img src="{{ asset('assets/img/' . $berita->gambar_berita) }}" class="card-img-top p-2"
-                                        alt="{{ $berita->judul_berita }}"
-                                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
-                                </div>
+                                @if ($index === 0 && $first_image)
+                                    <div class="card-img-top-container"
+                                        style="position: relative; width: 100%; padding-bottom: 75%;">
+                                        <img src="{{ asset('assets/img/' . $first_image) }}" class="card-img-top p-2"
+                                            alt="{{ $berita->judul_berita }}"
+                                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                                    </div>
+                                @endif
                                 <div class="card-body">
                                     <h5 class="card-title font-weight-bold">{!! Str::limit($berita->judul_berita, 50) !!}</h5>
                                     <p class="card-text text-truncate"
@@ -378,8 +384,7 @@
                                     </p>
                                     <p class="card-text">
                                         <small class="text-muted">Diposting pada {{ $berita->created_at->format('H:i') }}
-                                            WIB -
-                                            {{ $berita->created_at->format('d/m/Y') }} oleh Admin</small>
+                                            WIB - {{ $berita->created_at->format('d/m/Y') }} oleh Admin</small>
                                     </p>
                                 </div>
                             </div>
@@ -388,8 +393,7 @@
                 @endif
             </div>
         </div>
-
-
+        
         <div class="container mb-5 scroll-animation">
             <div class="video-container shadow-md">
                 <h2 class="font-weight-bold mx-auto">Dashboard SDGs Kota Bandar Lampung</h2>

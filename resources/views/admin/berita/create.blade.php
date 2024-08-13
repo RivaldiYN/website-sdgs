@@ -58,14 +58,15 @@
                                         required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="gambar_berita">Gambar</label>
-                                    <input type="file" name="gambar_berita" class="form-control @error('gambar_berita') is-invalid @enderror" required accept="image/*">
+                                    <label for="gambar_berita">Upload Foto-Foto Berita</label>
+                                    <input type="file" name="gambar_berita[]" class="form-control @error('gambar_berita') is-invalid @enderror" multiple required accept="image/*">
                                     @error('gambar_berita')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
                                 </div>
+                                
                                 <div class="form-group">
                                     <label for="konten_berita">Konten Berita</label>
                                     <textarea id="konten_berita" name="konten_berita" required value="{{ old('konten_berita') }}"class="form-control custom-txt-area @error('konten_berita') is-invalid @enderror"  >{{ old('konten_berita') }}</textarea>

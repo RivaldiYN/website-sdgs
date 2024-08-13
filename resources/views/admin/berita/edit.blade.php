@@ -67,14 +67,14 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="gambar">Gambar</label>
-                                    <input type="file" name="gambar" class="form-control @error('gambar') is-invalid @enderror" accept="image/*">
-                                    @error('gambar')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
+                                    <label for="gambar_berita">Gambar</label>
+                                    <input type="file" name="gambar_berita[]" class="form-control @error('gambar_berita') is-invalid @enderror" multiple required accept="image/*">
+                                    @error('gambar_berita')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
                                     @enderror
-                                </div>
+                                </div>                                
                                 <div class="form-group">
                                     <div x-data x-init="flatpickr($refs.datetimewidget, { wrap: true, enableTime: false, dateFormat: 'd/m/Y' });" x-ref="datetimewidget" class="form-group">
                                         <label for="waktu_berita">Tanggal dan Waktu Terbit</label>

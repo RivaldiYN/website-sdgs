@@ -39,13 +39,18 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
+                @php
+                    // Decode JSON field
+                    $gambar_berita = json_decode($berita->gambar_berita, true);
+                @endphp
+
                 <div id="blogCarousel" class="carousel slide my-5" data-bs-ride="carousel">
                     <div class="carousel-inner">
-                        @foreach (explode(',', $berita->gambar_berita) as $image)
-                        <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                            <img src="{{ asset('assets/img/' . $image) }}" class="d-block w-100" alt="Slide"
-                                style="max-height: 500px; object-fit: cover; border-radius: 12px;">
-                        </div>
+                        @foreach ($gambar_berita as $index => $image)
+                            <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                                <img src="{{ asset('assets/img/' . $image) }}" class="d-block w-100" alt="Slide"
+                                    style="max-height: 500px; object-fit: cover; border-radius: 12px;">
+                            </div>
                         @endforeach
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#blogCarousel"
