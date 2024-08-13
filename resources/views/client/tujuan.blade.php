@@ -8,6 +8,12 @@
             filter: brightness(0.8);
         }
 
+        .card-tujuan {
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
         .card-tujuan:hover {
             transform: translateY(-10px);
         }
