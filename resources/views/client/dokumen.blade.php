@@ -12,10 +12,11 @@
                 </div>
             </div>
         </div>
-        <div class="row mt-4">
+        <div class="row pt-5">
             @if ($dokumens->isEmpty())
-                <div class="col-12 text-center">
-                    <p>Belum ada dokumen yang tersedia.</p>
+                <div class="alert alert-info text-center">
+                    <h4 class="alert-heading font-weight-bold">Belum Ada Dokumen Yang Tersedia!</h4>
+                            <p>Sepertinya belum ada dokumen yang tersedia saat ini. Silakan periksa lagi nanti atau <a href="/kontak" class="text-warning">hubungi kami</a> jika ada pertanyaan.</p>
                 </div>
             @else
                 @foreach ($dokumens as $dokumen)

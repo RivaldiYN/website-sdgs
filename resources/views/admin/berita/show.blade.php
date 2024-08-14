@@ -34,6 +34,13 @@
                                         <input type="text" class="form-control" placeholder="Waktu Berita"
                                             name="judul_berita" id="judul_berita" value="{{ $berita->waktu_berita}}" disabled>
                                     </div>
+                                    <div class="">
+                                        @if (auth()->user()->roles_id == 1)
+                                          <a class="btn btn-success" href="/super/berita/">{{ __('Kembali') }}</a>
+                                        @elseif (auth()->user()->roles_id == 2)
+                                          <a class="btn btn-success" href="/admin/berita/">{{ __('Kembali') }}</a>
+                                        @endif
+                                      </div>
                                 </div>
                             </div>
                         </div>

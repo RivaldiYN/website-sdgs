@@ -7,7 +7,7 @@
 <form action="{{ route('super.dokumen.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
-        <label for="judul">Judul</label>
+        <label for="judul">Judul Dokumen</label>
         <input type="text" name="judul" class="form-control @error('judul') is-invalid @enderror" required>
         @error('judul')
             <span class="invalid-feedback" role="alert">
@@ -16,7 +16,7 @@
         @enderror
     </div>
     <div class="form-group">
-        <label for="gambar">Gambar</label>
+        <label for="gambar">Gambar Sampul Dokumen</label>
         <input type="file" name="gambar" class="form-control @error('gambar') is-invalid @enderror" accept="image/*">
         @error('gambar')
             <span class="invalid-feedback" role="alert">
