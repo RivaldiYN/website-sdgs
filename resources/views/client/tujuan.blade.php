@@ -42,6 +42,12 @@
                 display: none !important;
             }
         }
+
+        @media (max-width: 375px) {
+            .svg-atas {
+                display: none;
+            }
+        }
     </style>
 @endsection
 
