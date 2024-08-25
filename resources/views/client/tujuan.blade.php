@@ -43,7 +43,7 @@
             }
         }
 
-        @media (max-width: 375px) {
+        @media (max-width: 767px) {
             .svg-atas {
                 display: none;
             }
